@@ -1,0 +1,4 @@
+static:
+    build: static
+    ports:
+        - "8888:8888"
