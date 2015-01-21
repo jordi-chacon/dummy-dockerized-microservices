@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 app = Flask(__name__)
 
-@app.route('/messages', methods=['POST'])
+@app.route('/sentences', methods=['POST'])
 def hello():
     app.logger.info('Request received')
     return 'BURRU'

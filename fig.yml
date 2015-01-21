@@ -8,13 +8,13 @@ nginx:
     - components/nginx/src/:/static
   working_dir: /static
   links:
-    - newmessageendpointservice
+    - newsentenceendpointservice
 
-newmessageendpointservice:
-  build: components/new_message_endpoint_service
+newsentenceendpointservice:
+  build: components/new_sentence_endpoint_service
   ports:
     - 3000:3000
   volumes:
-    - components/new_message_endpoint_service/src:/src
+    - components/new_sentence_endpoint_service/src:/src
   working_dir: /src
   command: python app.py
