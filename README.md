@@ -21,15 +21,15 @@ The architecture is clearly over-engineered, but one of the points of this proje
 
 The app is made of several components, all of them running in their own docker container. The components are the following:
 * **nginx**: has two responsibilities:
-..* serve the static content of the web UI.
-..* route requests to the right endpoint services by looking into the request URI and HTTP method.
-* **new_sentence endpoint service**: service running a very simple Python webserver using the Flask framework. It listens for HTTP POST requests on /sentences. This service is responsible for receiving new sentences from the web UI, doing input validation on the body of the request and publishing the sentences to RabbitMQ.
+  * serve the static content of the web UI.
+  * route requests to the right endpoint services by looking into the request URI and HTTP method.
+* **new_sentence endpoint service**: service running a very simple Python webserver using the Flask framework. It listens for HTTP POST requests on ´/sentences´. This service is responsible for receiving new sentences from the web UI, doing input validation on the body of the request and publishing the sentences to RabbitMQ.
 
 ### How does the build and deploy mechanism work?
 For now, the deployment consists of firing up all containers in your local machine. I have not yet tried to get them to work through a cluster of machines or in the cloud, but I intend to do that as it is something I find very interesting.
 
 #### Build and deploy in your local machine
-I make use of [fig.sh](http://www.fig.sh) to build and deploy the app with a single command: `fig up`. This command looks into the `/fig.yml` file for the specification for each container and it does the two following steps:
+I make use of [fig.sh](http://www.fig.sh) to build and deploy the app with a single command: `fig up`. This command looks into the `/fig.yml` file for the specification of each container and it does the two following steps:
 
 1. download the necessary images for each container from the Docker Hub (this will take a pretty long time the first time you build)
 2. launch the containers with the specs stated in `fig.yml`, i.e. ports, volumes, links, command and so on.
