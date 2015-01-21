@@ -1,0 +1,14 @@
+# mount this as /etc/nginx/sites-templates/cool-app.conf.tmpl
+# will be available as /etc/nginx/sites-enabled/cool-app.conf
+
+server {
+  listen       80;
+  server_name  localhost;
+  root	       /static;
+
+  location /messages {
+  	   proxy_pass   http://${NEWMESSAGEENDPOINTSERVICE_PORT_3000_TCP_ADDR}:${NEWMESSAGEENDPOINTSERVICE_PORT_3000_TCP_PORT};
+  }
+
+  # ...Add more location directives
+}

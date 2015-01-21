@@ -1,4 +1,20 @@
-static:
-    build: static
-    ports:
-        - "8888:8888"
+nginx:
+  image: shepmaster/nginx-template-image
+  ports:
+    - "8888:80"
+  volumes:
+    - components/nginx/conf:/etc/nginx/sites-templates:ro
+    - /tmp/nginx-logs:/var/log/nginx
+    - components/nginx/src/:/static
+  working_dir: /static
+  links:
+    - newmessageendpointservice
+
+newmessageendpointservice:
+  build: components/new_message_endpoint_service
+  ports:
+    - 3000:3000
+  volumes:
+    - components/new_message_endpoint_service/src:/src
+  working_dir: /src
+  command: python app.py
