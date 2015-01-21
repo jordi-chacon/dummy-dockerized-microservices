@@ -1,7 +1,7 @@
 nginx:
   image: shepmaster/nginx-template-image
   ports:
-    - "8888:80"
+    - 8888:80
   volumes:
     - components/nginx/conf:/etc/nginx/sites-templates:ro
     - /tmp/nginx-logs:/var/log/nginx
