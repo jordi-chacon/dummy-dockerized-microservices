@@ -19,6 +19,8 @@ Offers an ugly web UI where the user can do two things:
 ### Architecture
 The architecture is clearly over-engineered, but one of the points of this project is precisely to have several services running on their own docker container talking to each other via rabbitmq.
 
+![alt tag](https://raw.githubusercontent.com/jordi-chacon/dummy-dockerized-microservices/master/priv/architecture_diagram.png)
+
 The app is made of several components, all of them running in their own docker container. The components are the following:
 * **nginx**: has two responsibilities:
   * serve the static content of the web UI.
