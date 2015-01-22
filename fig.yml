@@ -17,4 +17,11 @@ newsentenceendpointservice:
   volumes:
     - components/new_sentence_endpoint_service/src:/src
   working_dir: /src
-  command: python app.py
+  command: python new_sentence_endpoint_service.py
+  links:
+    - rabbitmq
+
+rabbitmq:
+  image: dockerfile/rabbitmq
+  ports:
+    - 5672:5672
