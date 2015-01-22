@@ -17,7 +17,7 @@ newsentenceendpointservice:
   volumes:
     - components/new_sentence_endpoint_service/src:/src
   working_dir: /src
-  command: python new_sentence_endpoint_service.py
+  command: python new_sentence_endpoint.py
   links:
     - rabbitmq
 
