@@ -1,3 +1,6 @@
+import sys
+sys.path.append('common/src')
+
 import logging
 import pika
 from flask import Flask, request, jsonify

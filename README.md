@@ -54,3 +54,13 @@ Simply run:
 ```
 make
 ```
+
+## Things to look into
+* running multiple containers of a particular service
+* upgrade handling
+* upgrade handling on contract changing between services
+* upgrade handling on common code change
+* running app on a cluster instead of a single machine
+* running app on aws
+* coreOS
+* vagrant
