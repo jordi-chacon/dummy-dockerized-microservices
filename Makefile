@@ -7,7 +7,7 @@ build_and_run: duplicate_common
 	sudo fig up
 
 duplicate_common:
-	cp -r components/common components/*_service/src/
+	echo components/*_service/src/ | xargs -n 1 cp -r components/common
 
 stop:
 	sudo fig stop

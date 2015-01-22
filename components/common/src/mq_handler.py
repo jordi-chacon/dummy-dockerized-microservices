@@ -20,6 +20,12 @@ class MQHandler:
             body=body,
             properties=self._publishing_properties(persistent))
 
+    def start_consuming(self, callback, queue, no_ack):
+        self.channel.basic_consume(callback,
+                                   queue=queue,
+                                   no_ack=no_ack)
+        self.channel.start_consuming()
+
     def _create_connection(self):
         credentials = pika.PlainCredentials('guest', 'guest')
         connection_params = pika.ConnectionParameters(

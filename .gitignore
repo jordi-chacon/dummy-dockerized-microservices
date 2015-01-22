@@ -2,3 +2,5 @@
 *.log
 *.pyc
 components/*_service/src/common
+.#*
+*#

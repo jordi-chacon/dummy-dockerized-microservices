@@ -21,6 +21,15 @@ newsentenceendpointservice:
   links:
     - rabbitmq
 
+loggingservice:
+  build: components/logging_service
+  volumes:
+    - components/logging_service/src:/src
+  working_dir: /src
+  command: python logging_endpoint.py
+  links:
+    - rabbitmq
+
 rabbitmq:
   image: dockerfile/rabbitmq
   ports:

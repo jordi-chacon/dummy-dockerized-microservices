@@ -2,7 +2,6 @@ import sys
 sys.path.append('common/src')
 
 import logging
-import pika
 from flask import Flask, request, jsonify
 from logging.handlers import RotatingFileHandler
 from mq_handler import MQHandler
@@ -13,12 +12,12 @@ app = Flask(__name__)
 
 @app.route('/sentences', methods=['POST'])
 def new_sentence():
-    sentence = parse_request_body()
-    publish_sentence_to_mq(sentence)
+    sentence = _parse_request_body()
+    _publish_sentence_to_mq(sentence)
     return jsonify({}), 201
 
 
-def parse_request_body():
+def _parse_request_body():
     json = request.get_json()
     sender = json["sender"]
     text = json["text"]
@@ -26,12 +25,8 @@ def parse_request_body():
     return Sentence(sender, text, language)
 
 
-def publish_sentence_to_mq(sentence):
+def _publish_sentence_to_mq(sentence):
     mq_handler.publish('new_sentence', '', sentence.to_json(), True)
-
-
-def publishing_properties_to_persist_messages():
-    return pika.BasicProperties(delivery_mode=2)
 
 
 if __name__ == "__main__":
