@@ -46,3 +46,8 @@ rabbitmq:
   image: dockerfile/rabbitmq
   ports:
     - 5672:5672
+
+cassandra:
+  image: abh1nav/cassandra
+  ports:
+    - 9042:9042

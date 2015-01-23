@@ -26,6 +26,12 @@ The app is made of several components, all of them running in their own docker c
   * serve the static content of the web UI.
   * route requests to the right endpoint services by looking into the request URI and HTTP method.
 * **new_sentence endpoint service**: service running a very simple Python webserver using the Flask framework. It listens for HTTP POST requests on ´/sentences´. This service is responsible for receiving new sentences from the web UI, doing input validation on the body of the request and publishing the sentences to RabbitMQ.
+* **translation service**: consumes new sentences from RabbitMQ and translates them into other languages using the Microsoft Translation Service. Publishes each translated sentence to RabbitMQ.
+* **storage service**: consumes original and translated sentences and stores them in Cassandra.
+* **cassandra**: used for:
+  * storing all sentences, both the original and its translations.
+  * retrieve all sentences in a particular language.
+* **logging service**: consumes each message published to any RabbitMQ exchange and logs them.
 
 ### How does the build and deploy mechanism work?
 For now, the deployment consists of firing up all containers in your local machine. I have not yet tried to get them to work through a cluster of machines or in the cloud, but I intend to do that as it is something I find very interesting.
