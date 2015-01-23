@@ -10,7 +10,7 @@ def _consume_message(ch, method, properties, body):
 
 
 def _format():
-    return 'LOGGING SERVICE - %(asctime)s - Message consumed: %(message)s'
+    return 'LOGGING SERVICE - %(asctime)s - New message in queues: %(message)s'
 
 
 if __name__ == '__main__':

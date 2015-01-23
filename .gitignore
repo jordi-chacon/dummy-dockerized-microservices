@@ -4,3 +4,5 @@
 components/*_service/src/common
 .#*
 *#
+env
+fig.yml.bup

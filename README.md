@@ -36,6 +36,8 @@ I make use of [fig.sh](http://www.fig.sh) to build and deploy the app with a sin
 1. download the necessary images for each container from the Docker Hub (this will take a pretty long time the first time you build)
 2. launch the containers with the specs stated in `fig.yml`, i.e. ports, volumes, links, command and so on.
 
+
+
 ## Build and run
 
 ### Platform
@@ -49,11 +51,19 @@ Make sure your machine has these packages before building:
 * python
 * pip
 
+To perform the translations you need to create a Microsoft Services free account [here](https://datamarket.azure.com/home). Then go [here](https://datamarket.azure.com/developer/applications/) and register a new application to obtain a ClientId and a Secret. Now go to the root directory of the project, create a file called `env` which contains the following environment variables:
+```
+TRANSLATE_API_CLIENT_ID=my_client_id
+TRANSLATE_API_SECRET=my_secret
+```
+
 ### How to build and deploy
 Simply run:
 ```
 make
 ```
+
+
 
 ## Things to look into
 * running multiple containers of a particular service

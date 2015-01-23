@@ -30,6 +30,18 @@ loggingservice:
   links:
     - rabbitmq
 
+translationservice:
+  build: components/translation_service
+  volumes:
+    - components/translation_service/src:/src
+  working_dir: /src
+  command: python translation_endpoint.py
+  environment:
+    - TRANSLATE_API_CLIENT_ID=${TRANSLATE_API_CLIENT_ID}
+    - TRANSLATE_API_SECRET=${TRANSLATE_API_SECRET}
+  links:
+    - rabbitmq
+
 rabbitmq:
   image: dockerfile/rabbitmq
   ports:

@@ -26,6 +26,9 @@ class MQHandler:
                                    no_ack=no_ack)
         self.channel.start_consuming()
 
+    def ack(self, method):
+        self.channel.basic_ack(delivery_tag=method.delivery_tag)
+
     def _create_connection(self):
         credentials = pika.PlainCredentials('guest', 'guest')
         connection_params = pika.ConnectionParameters(
