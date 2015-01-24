@@ -20,7 +20,7 @@ def _consume_message(ch, method, properties, body):
 
 
 def _translate_to_all_languages(original_sentence):
-    languages = ["en", "es", "sv"]
+    languages = _get_languages()
     languages.remove(original_sentence.get_language())
     for language in languages:
         _translate_to(original_sentence, language)
@@ -36,6 +36,10 @@ def _translate_to(original_sentence, to_language):
     translated_sentence.set_language(to_language)
     translated_sentence.set_text(translation)
     mq_handler.publish('storage', '', translated_sentence.to_json(), True)
+
+
+def _get_languages():
+    return os.environ['LANGUAGES'].split(":")
 
 
 if __name__ == '__main__':

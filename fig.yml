@@ -39,8 +39,21 @@ translationservice:
   environment:
     - TRANSLATE_API_CLIENT_ID=${TRANSLATE_API_CLIENT_ID}
     - TRANSLATE_API_SECRET=${TRANSLATE_API_SECRET}
+    - LANGUAGES=${LANGUAGES}
   links:
     - rabbitmq
+
+storageservice:
+  build: components/storage_service
+  volumes:
+    - components/storage_service/src:/src
+  working_dir: /src
+  command: python storage_endpoint.py
+  environment:
+    - LANGUAGES=${LANGUAGES}
+  links:
+    - rabbitmq
+    - cassandra
 
 rabbitmq:
   image: dockerfile/rabbitmq

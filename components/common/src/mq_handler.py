@@ -40,7 +40,7 @@ class MQHandler:
             try:
                 return pika.BlockingConnection(connection_params)
             except pika.exceptions.AMQPConnectionError:
-                time.sleep(1)
+                time.sleep(10)
         return pika.BlockingConnection(connection_params)
 
     def _setup(self):

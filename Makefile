@@ -9,9 +9,9 @@ build_and_run: duplicate_common replace_env_in_fig
 duplicate_common:
 	echo components/*_service/src/ | xargs -n 1 cp -r components/common
 
-replace_env_in_fig: env clean_fig
+replace_env_in_fig: config clean_fig
 	mv fig.yml fig.yml.bup
-	bash -ac '. ./env; envsubst < fig.yml.bup > fig.yml'
+	bash -ac '. ./config; envsubst < fig.yml.bup > fig.yml'
 
 clean_fig:
 	-mv fig.yml.bup fig.yml

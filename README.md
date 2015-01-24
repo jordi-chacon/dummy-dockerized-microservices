@@ -9,7 +9,7 @@ For me to try for the first (or maybe second) time a bunch of technologies, tool
 * nginx
 * rabbitmq
 * microservices
-* a db yet to be chosen
+* cassandra
 
 ### What does this app do?
 Offers an ugly web UI where the user can do two things:
@@ -57,11 +57,7 @@ Make sure your machine has these packages before building:
 * python
 * pip
 
-To perform the translations you need to create a Microsoft Services free account [here](https://datamarket.azure.com/home). Then go [here](https://datamarket.azure.com/developer/applications/) and register a new application to obtain a ClientId and a Secret. Now go to the root directory of the project, create a file called `env` which contains the following environment variables:
-```
-TRANSLATE_API_CLIENT_ID=my_client_id
-TRANSLATE_API_SECRET=my_secret
-```
+To perform the translations you need to create a Microsoft Services free account [here](https://datamarket.azure.com/home). Then go [here](https://datamarket.azure.com/developer/applications/) and register a new application to obtain a ClientId and a Secret. Now go to the root directory of the project, open the file called `config` and add your ClientId and Secret.
 
 ### How to build and deploy
 Simply run:

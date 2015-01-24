@@ -1,0 +1,3 @@
+TRANSLATE_API_CLIENT_ID=my_client_id
+TRANSLATE_API_SECRET=my_secret
+LANGUAGES=en:es:sv
