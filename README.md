@@ -66,6 +66,23 @@ make
 ```
 
 
+### Operate
+Tail the logs:
+```
+sudo fig logs
+```
+
+Stop a service:
+```
+sudo fig stop service_name
+```
+
+Connect to cassandra:
+```
+priv/connect_to_cassandra.sh
+```
+
+
 
 ## Things to look into
 * running multiple containers of a particular service
@@ -76,3 +93,6 @@ make
 * running app on aws
 * coreOS
 * vagrant
+* better port handling
+* reload python service code without stopping it
+

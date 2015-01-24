@@ -1,0 +1,15 @@
+.left_div {
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 48%;
+    margin: 0 2% 10px 0
+}
+
+.right_div {
+    display: block;
+    float: right;
+    box-sizing: border-box;
+    width: 48%;
+    margin: 0 0 10px 2%
+}

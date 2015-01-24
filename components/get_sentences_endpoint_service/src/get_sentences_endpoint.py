@@ -30,7 +30,7 @@ def _query(language):
 def _query_result_entry_to_json(entry):
     return {"author": entry.author,
             "text": entry.text,
-            "time": str(entry.time)}
+            "time": entry.time.strftime("%Y-%m-%d %H:%M:%S")}
 
 
 if __name__ == "__main__":
