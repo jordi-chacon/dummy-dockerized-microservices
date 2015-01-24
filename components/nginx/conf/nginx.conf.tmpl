@@ -7,8 +7,12 @@ server {
   root	       /static;
 
   location /sentences {
-  	   proxy_pass   http://${NEWSENTENCEENDPOINTSERVICE_PORT_3000_TCP_ADDR}:${NEWSENTENCEENDPOINTSERVICE_PORT_3000_TCP_PORT};
-  }
+  	   if ($request_method = POST ) {
+	      proxy_pass   http://${NEWSENTENCEENDPOINTSERVICE_PORT_3000_TCP_ADDR}:${NEWSENTENCEENDPOINTSERVICE_PORT_3000_TCP_PORT};
+	   }
 
-  # ...Add more location directives
+	   if ($request_method = GET ) {
+	      proxy_pass   http://${GETSENTENCESENDPOINTSERVICE_PORT_4000_TCP_ADDR}:${GETSENTENCESENDPOINTSERVICE_PORT_4000_TCP_PORT};
+	   }
+  }
 }

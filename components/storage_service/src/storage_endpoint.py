@@ -2,6 +2,7 @@ import sys
 sys.path.append('common/src')
 
 import logging
+import time
 import uuid
 from mq_handler import MQHandler
 from sentence import Sentence
@@ -20,13 +21,18 @@ def _consume_message(ch, method, properties, body):
 
 
 def _persist_sentence(sentence):
-    table_name = store_handler.language_table_name(sentence.get_language())
-    query = "INSERT INTO " + table_name + """
-    (id, author, text) VALUES (%s,%s,%s)"""
-    values = (uuid.uuid1(),
+    query = """INSERT INTO my_key_space.sentences
+    (language, time, id, author, text) VALUES (%s,%s,%s,%s,%s)"""
+    params = (sentence.get_language(),
+              _timestamp(),
+              uuid.uuid4(),
               sentence.get_author(),
               sentence.get_text())
-    store_handler.execute_query(query, values)
+    store_handler.execute_query(query, params)
+
+
+def _timestamp():
+    return int(time.time() * 1000)
 
 
 if __name__ == '__main__':

@@ -9,6 +9,7 @@ nginx:
   working_dir: /static
   links:
     - newsentenceendpointservice
+    - getsentencesendpointservice
 
 newsentenceendpointservice:
   build: components/new_sentence_endpoint_service
@@ -53,6 +54,19 @@ storageservice:
     - LANGUAGES=${LANGUAGES}
   links:
     - rabbitmq
+    - cassandra
+
+getsentencesendpointservice:
+  build: components/get_sentences_endpoint_service
+  ports:
+    - 4000:4000
+  volumes:
+    - components/get_sentences_endpoint_service/src:/src
+  working_dir: /src
+  command: python get_sentences_endpoint.py
+  environment:
+    - LANGUAGES=${LANGUAGES}
+  links:
     - cassandra
 
 rabbitmq:
