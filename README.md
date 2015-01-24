@@ -25,12 +25,14 @@ The app is made of several components, all of them running in their own docker c
 * **nginx**: has two responsibilities:
   * serve the static content of the web UI.
   * route requests to the right endpoint services by looking into the request URI and HTTP method.
-* **new_sentence endpoint service**: service running a very simple Python webserver using the Flask framework. It listens for HTTP POST requests on ´/sentences´. This service is responsible for receiving new sentences from the web UI, doing input validation on the body of the request and publishing the sentences to RabbitMQ.
+* **new_sentence endpoint service**: service running a very simple Python webserver using the Flask framework. It listens for HTTP POST requests on `/sentences`. This service is responsible for receiving new sentences from the web UI, doing input validation on the body of the request and publishing the sentences to RabbitMQ.
+* **get_sentences endpoint service**: another service running a very simple Python webserver, also using Flask. It listens for HTTP GET requests on `/sentences`. Responsible for retrieving the list of all sentences in a particular language and returning such list to the web UI.
 * **translation service**: consumes new sentences from RabbitMQ and translates them into other languages using the Microsoft Translation Service. Publishes each translated sentence to RabbitMQ.
 * **storage service**: consumes original and translated sentences and stores them in Cassandra.
 * **cassandra**: used for:
   * storing all sentences, both the original and its translations.
   * retrieve all sentences in a particular language.
+* **rabbitmq**: used for communication between all the python services.
 * **logging service**: consumes each message published to any RabbitMQ exchange and logs them.
 
 ### How does the build and deploy mechanism work?
